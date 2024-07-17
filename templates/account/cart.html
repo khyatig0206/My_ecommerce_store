@@ -65,10 +65,11 @@
                     </table>
 
                     <div class="card-body border-top">
+                        {% if cart %}
                         <form action="{% url 'checkout_session' cart.uid %}" method="POST">
                             {% csrf_token %}
                         <button type="submit" class="btn btn-primary float-md-right"> Make Purchase <i class="fa fa-chevron-right"></i> </button>
-                        
+                        {% endif %}
                         
                         </form>
                         <a href="{% url 'home_page' %}" class="btn btn-light"> <i class="fa fa-chevron-left"></i> Continue shopping </a>
