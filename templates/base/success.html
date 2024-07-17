@@ -1,0 +1,32 @@
+
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  .centered-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh; /* Adjust as necessary */
+    text-align: center;
+    font-size: 2em; /* Large text */
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
+
+<div class="centered-message">
+  <div>
+    Thanks for purchasing our product.
+    <br>
+    <br>
+    You will be redirected to the home page shortly.
+  </div>
+</div>
+
+<!-- JavaScript to redirect after 5 seconds -->
+<script>
+  setTimeout(function(){
+    window.location.href = "{% url 'home_page' %}";
+  }, 4000);
+</script>
+{% endblock content %}

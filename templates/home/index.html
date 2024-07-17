@@ -1,0 +1,79 @@
+{%extends "base/base.html" %}
+
+{% block start %}
+
+<!-- slick carousel -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
+
+<!-- slider -->
+<div class="container mt-5 pt-5">
+    <div class="slider">
+        {% for product in products %}
+        <div>
+            <figure class="card card-product-grid">
+                <div class="img-wrap">
+                    <img src="/media/{{ product.product_images.first.image }}" alt="{{ product.product_name }}">
+                </div>
+                <figcaption class="info-wrap border-top">
+                    <a href="{% url 'get_product' product.slug %}" class="title">{{ product.product_name }}</a>
+                    <div class="price mt-2">₹{{ product.price }}.00</div>
+                </figcaption>
+            </figure>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- all products -->
+<div class="container mt-2 pt-5">
+    <div class="text-center mb-5">
+        <h4>All products</h4>
+    </div>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4">
+            <figure class="card card-product-grid">
+                <div class="img-wrap"> <img src="/media/{{product.product_images.first.image}}"> </div>
+                <figcaption class="info-wrap border-top">
+                    <a href="{% url 'get_product' product.slug %}" class="title"> {{product.product_name}} </a>
+                    <div class="price mt-2">₹{{product.price}}.00</div> <!-- price-wrap.// -->
+                </figcaption>
+            </figure> <!-- card // -->
+        </div> <!-- col.// -->
+        {% endfor %}
+    </div>
+ </div>
+
+
+ <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.slider').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            dots: true,
+            infinite: true,
+            speed: 300,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+            ]
+        });
+    });
+</script>
+
+{% endblock %}
