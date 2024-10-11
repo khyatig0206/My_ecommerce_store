@@ -39,7 +39,7 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 
 ### 7. **Chatbot Integration (Dialogflow)**
    - A customer support chatbot powered by **Dialogflow** is integrated with the platform.
-   - The chatbot communicates with the backend through webhooks, providing assistance on products, orders, and more.
+   - The chatbot communicates with the backend through webhooks, enabling users to track order status through order ID and also enabling users to add items to cart by just using texts and it will search for the product in the database that user wants to order and add it to cart.
 
 ### 8. **Email Verification**
    - During the registration process, users receive a verification email to ensure the authenticity of their account.
