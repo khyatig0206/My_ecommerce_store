@@ -52,7 +52,7 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 ### 1. Clone the Repository
 
    ```bash
-   git clone [https://github.com/your-repo/ecommerce-platform.git](https://github.com/khyatig0206/My_ecommerce_store.git )
+   git clone https://github.com/khyatig0206/My_ecommerce_store.git 
    cd My_ecommerce_store
    ```
 
