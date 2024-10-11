@@ -110,11 +110,13 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 ![Screenshot (147)](https://github.com/user-attachments/assets/3913ccb7-0e8e-4ff1-a9a5-8d9aa6357cd3)
 
 ![Screenshot (6)](https://github.com/user-attachments/assets/139e57e7-423f-4e16-909d-0b8893936079)
-![Screenshot (7)](https://github.com/user-attachments/assets/a35359a9-3c52-4a10-94c6-cb3955ed70f5)
+![Screenshot (151)](https://github.com/user-attachments/assets/bfae0be0-bb9b-4fc6-aabc-1c55e57a8f90)
+
 ![Screenshot (3)](https://github.com/user-attachments/assets/00d58183-87ed-4610-8069-b885161ae618)
 ![Screenshot (146)](https://github.com/user-attachments/assets/539d7478-ed28-4d27-8723-9189851f3389)
 
-![Screenshot (1)](https://github.com/user-attachments/assets/7557ab9d-61d6-46dd-afba-ce0fd248bbb6)
+![Screenshot (152)](https://github.com/user-attachments/assets/081319f0-9c64-4acf-847e-3d375aaead66)
+
 ![Screenshot (2)](https://github.com/user-attachments/assets/82285918-af27-48a7-92e1-02d1b2b5b71b)
 
 ![Screenshot (142)](https://github.com/user-attachments/assets/c35e04a7-e65c-4f15-8a31-cc5abae588e1)
