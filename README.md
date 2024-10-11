@@ -52,8 +52,8 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 ### 1. Clone the Repository
 
    ```bash
-   git clone https://github.com/your-repo/ecommerce-platform.git
-   cd ecommerce-platform
+   git clone [https://github.com/your-repo/ecommerce-platform.git](https://github.com/khyatig0206/My_ecommerce_store.git )
+   cd My_ecommerce_store
    ```
 
 ### 2. Install Dependencies
@@ -95,23 +95,6 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 
    You can access the Django admin panel at `http://localhost:8000/admin/` using the admin credentials created during setup.
 
-## Testing
-
-1. **Coupon Testing**
-   - Apply the coupon `firstbuy` during checkout to test discount functionality.
-
-2. **Payment Testing**
-   - Use the following test card information to test Stripe payment:
-     - **Card Number:** `4242 4242 4242 4242`
-     - **Expiry Date:** `12/34`
-     - **CVC:** `567`
-     - **ZIP Code:** `12345`
-
-3. **Login Testing**
-   - Use the test credentials:
-     - **Email:** `test123@gmail.com`
-     - **Password:** `123`
-
 ## Technologies Used
 
 - **Backend:** Django
@@ -121,14 +104,32 @@ This project is a full-featured Ecommerce platform built using **Django**, incor
 - **Chatbot:** Google Dialogflow (Webhook integration with Django backend)
 - **Email Service:** Django's built-in email system (SMTP or any other email service)
 
+![Screenshot (150)](https://github.com/user-attachments/assets/723a9695-f11d-44fe-b263-7b0f9e5a2bee)
+
+![Screenshot (148)](https://github.com/user-attachments/assets/fcb7827e-fdcf-4c5d-98f9-7e2dcdd4949e)
+![Screenshot (147)](https://github.com/user-attachments/assets/3913ccb7-0e8e-4ff1-a9a5-8d9aa6357cd3)
+
+![Screenshot (6)](https://github.com/user-attachments/assets/139e57e7-423f-4e16-909d-0b8893936079)
+![Screenshot (7)](https://github.com/user-attachments/assets/a35359a9-3c52-4a10-94c6-cb3955ed70f5)
+![Screenshot (3)](https://github.com/user-attachments/assets/00d58183-87ed-4610-8069-b885161ae618)
+![Screenshot (146)](https://github.com/user-attachments/assets/539d7478-ed28-4d27-8723-9189851f3389)
+
+![Screenshot (1)](https://github.com/user-attachments/assets/7557ab9d-61d6-46dd-afba-ce0fd248bbb6)
+![Screenshot (2)](https://github.com/user-attachments/assets/82285918-af27-48a7-92e1-02d1b2b5b71b)
+
+![Screenshot (142)](https://github.com/user-attachments/assets/c35e04a7-e65c-4f15-8a31-cc5abae588e1)
+
+![Screenshot (143)](https://github.com/user-attachments/assets/c23e03b4-f070-4dfe-8dff-e2a329cbb832)
+
+![Screenshot (144)](https://github.com/user-attachments/assets/6c3b1eeb-d5a4-488a-bd8b-c0b98d1f14eb)
+
+![Screenshot (145)](https://github.com/user-attachments/assets/ace2026e-e6fb-443b-a97f-e4f6118e8b48)
+
+![Screenshot (146)](https://github.com/user-attachments/assets/a57e2d32-c41f-4823-a5c9-3580d35a49ab)
+
+![Screenshot (149)](https://github.com/user-attachments/assets/b7277449-38e2-484b-bda5-00634a51aea2)
+
 ## How to Contribute
 
 Feel free to open issues or submit pull requests if you'd like to contribute to this project.
 
-## License
-
-This project is licensed under the MIT License.
-
----
-
-This version specifies that the project is built with Django, keeping all the relevant details for users and developers. Let me know if you'd like to modify any section or add more details!
