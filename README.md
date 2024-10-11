@@ -1,5 +1,5 @@
 
-# Ecommerce Platform with Stripe Integration, Coupon Functionality, and Chatbot
+# Ecommerce Platform with ChatBot
 
 ## Overview
 
