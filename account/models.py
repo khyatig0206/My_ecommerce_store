@@ -36,22 +36,24 @@ class Cart(BaseModel):
         return f"{self.user.user.first_name} {self.user.user.last_name}" 
     
     def get_cart_price(self):
-        cart_items=self.cart_items.all()
-        price=[]
+        cart_items = self.cart_items.all()
+        price = []
         for item in cart_items:
-            item_price=item.get_cartitem_price()
+            item_price = item.get_cartitem_price() 
             price.append(item_price)
-        if self.coupon:
-            if self.coupon.minimum_amount<sum(price):
-                return sum(price)-self.coupon.discount_price
-            
-        return sum(price)
+        
+        total_price = sum(price)
+        if self.coupon and self.coupon.minimum_amount < total_price:
+            return total_price - self.coupon.discount_price
+        
+        return total_price
 
 class cartItems(BaseModel):
     cart=models.ForeignKey(Cart,on_delete=models.CASCADE,related_name='cart_items')
     product=models.ForeignKey(Product,on_delete=models.SET_NULL,null=True,blank=True)
     color_variant=models.ForeignKey(ColorVariant,on_delete=models.SET_NULL,null=True,blank=True)
     size_variant=models.ForeignKey(SizeVariant,on_delete=models.SET_NULL,null=True,blank=True)
+    quantity=models.IntegerField(default=1)
 
     def __str__(self) -> str:
         return f"{self.product.product_name}-{self.cart.user.user.email}"
@@ -61,7 +63,30 @@ class cartItems(BaseModel):
 
         if self.size_variant:
             price.append(self.size_variant.price)
-        return sum(price)
+        return sum(price)*(self.quantity)
+
+
+
+class Order(BaseModel):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="orders")
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    order_id = models.CharField(max_length=100, unique=True)
+    status = models.CharField(max_length=50, default="Processing") 
+
+    def __str__(self):
+        return f"Order {self.order_id} for {self.user.user.email}"
+
+class OrderItem(BaseModel):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="order_items")
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    color_variant = models.ForeignKey(ColorVariant, on_delete=models.SET_NULL, null=True, blank=True)
+    size_variant = models.ForeignKey(SizeVariant, on_delete=models.SET_NULL, null=True, blank=True)
+    quantity=models.IntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.product.product_name} - {self.quantity} pcs"
+
+
 
 # The @receiver decorator links the send_email_token function to the post_save signal of the User model.
 @receiver(post_save,sender=User)

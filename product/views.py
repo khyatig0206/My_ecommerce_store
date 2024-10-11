@@ -5,6 +5,9 @@ from account.models import *
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+from django.contrib import messages
 
 
 def get_product(request,slug):
@@ -37,16 +40,21 @@ def add_to_cart(request, slug):
         return redirect('login')
     size_variant = request.GET.get('size_variant')
     color_variant = request.GET.get('color_variant')
+    quantity = int(request.GET.get('quantity', 1))  
     product = Product.objects.get(slug=slug)
     user_profile = Profile.objects.get(user=request.user)
     cart, _ = Cart.objects.get_or_create(user=user_profile, is_paid=False)
-    cart_item = cartItems.objects.create(cart=cart, product=product)
+    cart_item = cartItems.objects.create(cart=cart, product=product,quantity=quantity)
 
     if size_variant:
         size = SizeVariant.objects.get(size=size_variant)
         cart_item.size_variant = size
+
     if color_variant:
         color = ColorVariant.objects.get(color=color_variant)
         cart_item.color_variant = color
+    else:
+        messages.error(request, "Please select a color.")
+
     cart_item.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7i98pawvqj1u+(jk_!nng%qwm_)!_kl@+!%jib3ch(e2)mz6d4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -72,7 +72,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
-
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default: store session in the database
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
+SESSION_SAVE_EVERY_REQUEST = True
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -83,7 +85,11 @@ DATABASES = {
     }
 }
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+]
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 

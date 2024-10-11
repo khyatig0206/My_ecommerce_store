@@ -37,6 +37,7 @@ class Product(BaseModel):
     color_variant=models.ManyToManyField(ColorVariant,blank=True)
     size_variant=models.ManyToManyField(SizeVariant,blank=True)
 
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.product_name)

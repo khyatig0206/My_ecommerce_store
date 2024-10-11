@@ -2,6 +2,7 @@
 
 {% block start %}
 <section class="section-content padding-y bg">
+    {% include 'base/alert.html' %}
     <div class="container">
     <div class="card">
         
@@ -76,12 +77,12 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-light" type="button" id="button-plus"> + </button>
                                 </div>
-                                <input type="text" class="form-control" value="1">
+                                <input type="text" id="quantity-input" class="form-control" value="1">
                                 <div class="input-group-append">
                                     <button class="btn btn-light" type="button" id="button-minus"> − </button>
                                 </div>
                             </div>
-                        </div> <!-- col.// -->
+                        </div>
                         {% if product.size_variant.count %}
                         <div class="form-group col-md">
                             <label>Select Screen size</label>
@@ -96,8 +97,12 @@
                         </div> <!-- col.// -->
                         {% endif %}
                     </div> <!-- row.// -->
-                    <a href="#" class="btn btn-primary"> Buy now </a>
-                    <a href="{% url 'add-to-cart' product.slug %}{% if selected_size %}?size_variant={{ selected_size }}{% endif %}{% if selected_color %}{% if selected_size %}&{% else %}?{% endif %}color_variant={{ selected_color }}{% endif %}" class="btn btn-outline-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i> </a>
+
+                    <a href="{% url 'buy_now' product.slug %}{% if selected_size %}?size_variant={{ selected_size }}{% endif %}{% if selected_color %}{% if selected_size %}&{% else %}?{% endif %}color_variant={{ selected_color }}{% endif %}" class="btn btn-primary buy-now-btn"> Buy now </a>
+                    <a href="{% url 'add-to-cart' product.slug %}{% if selected_size %}?size_variant={{ selected_size }}{% endif %}{% if selected_color %}{% if selected_size %}&{% else %}?{% endif %}color_variant={{ selected_color }}{% endif %}&quantity=1" class="btn btn-outline-primary add-to-cart-btn">
+                        <span class="text">Add to cart</span>
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
                 </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
         </div> <!-- row.// -->
@@ -105,6 +110,26 @@
     </div>
 </section>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const plusButton = document.getElementById('button-plus');
+    const minusButton = document.getElementById('button-minus');
+    const quantityInput = document.getElementById('quantity-input');
+
+    plusButton.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value, 10);
+        if (!isNaN(currentValue)) {
+            quantityInput.value = currentValue + 1;
+        }
+    });
+
+    minusButton.addEventListener('click', function() {
+        let currentValue = parseInt(quantityInput.value, 10);
+        if (!isNaN(currentValue) && currentValue > 1) {
+            quantityInput.value = currentValue - 1;
+        }
+        });
+    });
+
     function get_correct_price(size) {
         const urlParams = new URLSearchParams(window.location.search);
         urlParams.set('size', size);
@@ -115,5 +140,57 @@
         urlParams.set('color', color);
         window.location.search = urlParams.toString();
     }
+
+
+    document.querySelector('.add-to-cart-btn').addEventListener('click', function(event) {
+    event.preventDefault();  // Prevent default behavior to modify the link first
+
+    // Get selected size and color
+    const selectedSize = document.querySelector('input[name="select_size"]:checked');
+    const selectedColor = document.querySelector('select option:checked').value;
+
+    // Check if size or color is required and not selected
+    
+    if (document.querySelector('select').length > 0 && selectedColor === "") {
+        alert("Please select a color.");
+        return;  // Stop execution
+    }
+
+    // Get quantity and update the cart link
+    const quantity = document.getElementById('quantity-input').value;
+    let addToCartLink = this.href;
+
+    let url = new URL(addToCartLink, window.location.origin);
+    url.searchParams.set('quantity', quantity);
+
+    // Redirect to the updated link with the quantity
+    window.location.href = url.toString();
+});
+
+document.querySelector('.buy-now-btn').addEventListener('click', function(event) {
+        event.preventDefault();  // Prevent default behavior to modify the link first
+
+        // Get selected size and color
+        const selectedSize = document.querySelector('input[name="select_size"]:checked');
+        const selectedColor = document.querySelector('select option:checked').value;
+
+        // Check if size or color is required and not selected
+        
+
+        if (document.querySelector('select').length > 0 && selectedColor === "") {
+            alert("Please select a color.");
+            return;  // Stop execution
+        }
+        const quantity = document.getElementById('quantity-input').value;
+        // Get the buy now link and modify it based on size/color selection
+        let buyNowLink = this.href;
+        let url = new URL(buyNowLink, window.location.origin);
+        url.searchParams.set('quantity', quantity);
+
+
+        // Redirect to the updated link
+        window.location.href = url.toString();
+    });
+
 </script>
 {% endblock %}

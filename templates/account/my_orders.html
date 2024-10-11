@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block start %}
+<div class="container m-5">
+    <h2 class="text-center mb-4">My Orders</h2>
+
+    {% if orders %}
+        <div class="row">
+            {% for order in orders %}
+                <div class="col-12 mb-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">Order ID: {{ order.order_id }}</h4>
+                            <p class="card-text">Status: 
+                                <span class="badge 
+                                    {% if order.status == 'Delivered' %}
+                                        badge-success
+                                    {% elif order.status == 'Pending' %}
+                                        badge-warning
+                                    {% elif order.status == 'Cancelled' %}
+                                        badge-danger
+                                    {% else %}
+                                        badge-secondary
+                                    {% endif %}
+                                ">{{ order.status }}</span>
+                            </p>
+
+                            <ul class="list-group list-group-flush">
+                                {% for item in order.order_items.all %}
+                                    <li class="list-group-item">
+                                        <strong>Product:</strong> {{ item.product.product_name }} - 
+                                        <strong>Quantity:</strong> {{ item.quantity}} pcs <br>
+                                        {% if item.color_variant %}
+                                            <strong>Color:</strong> {{ item.color_variant.color }} <br>
+                                        {% endif %}
+                                        {% if item.size_variant %}
+                                            <strong>Size:</strong> {{ item.size_variant.size }}
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            No orders found.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
